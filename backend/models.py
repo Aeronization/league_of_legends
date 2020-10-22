@@ -2,6 +2,8 @@ from django.db import models
 
 # (R. Friel - October 21, 2020) - Models are created based on this URL
 # and available champion information.
+# URL: http://ddragon.leagueoflegends.com/cdn/10.21.1/data/en_US/champion.json
+# Check the vesion number.
 
 # Create your models here.
 class Champion(models.Model):
@@ -43,3 +45,6 @@ class Champion(models.Model):
 
     # Mana/Energy
     mana = models.CharField(max_length=255, null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.name}"
