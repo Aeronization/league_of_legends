@@ -358,6 +358,16 @@ class Champion(models.Model):
                 found_skin = ChampionSkin.objects.create(image=found_skin_url, champion=found_champion, name=skin_name)
 
 
+    @classmethod
+    def process_all_champions_specific(cls):
+        """
+        (R. Friel - October 23, 2020)
+        Will get all of the current champions.
+        Then process them specifically to get all possible information.
+        """
+        general_content: list = cls.get_generic_champion_info()
+        for champion in general_content["data"]:
+            cls.process_specific_champion(champion)
 
 class ChampionSkin(models.Model):
     image = models.ImageField(upload_to="images/", height_field=None, width_field=None, max_length=None, null=True, blank=True)
